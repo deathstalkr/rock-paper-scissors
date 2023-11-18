@@ -50,7 +50,7 @@ function randomNum() {
     const player = playerSelection.toLowerCase();
   
     if (player === computerSelection) {
-      return `Draw! play again`;
+      return `Draw! Taking re-match`;
     } else if (player == "rock" && computerSelection == "paper" || player == "scissors" && computerSelection == "rock" || player == "paper" && computerSelection == "scissors") {
       return `You loose! ${computerSelection} beats ${player}`;
     } else if (player == "paper" && computerSelection == "rock" || player == "rock" && computerSelection == "scissors" || player == "scissors" && computerSelection == "paper") {
@@ -64,9 +64,10 @@ function randomNum() {
     let playerSelection = '';
     let computerSelection = '';
     let count = 0;
+    alert(`You Vs Computer\n5 match series\n0 - 0`)
     for (let i = 0; i < 5; i++) {
   
-      playerSelection = prompt(`Please choose any one:\n rock, paper or scissors`, '');
+      playerSelection = prompt(`Please choose any one:\nrock, paper or scissors`, '');
       computerSelection = getComputerChoice();
   
       let match = playRound(playerSelection, computerSelection)
@@ -75,13 +76,17 @@ function randomNum() {
   
       if (match.includes("win!")) {
         count += 1;
-      } else if (match.includes("Please enter a valid option")) {
+      } else if (match.includes("Please enter a valid option") || match.includes("Draw!")) {
         i--;
       }
     }
-    console.log(`You won ${count} matches out of 5`);
-    alert(`You won ${count} matches out of 5`);
-  
+    if (count <= Math.floor(5 / 2)) {
+      console.log(`You lost the series against the computer!! ${count} - ${5-count}`)
+      return alert(`You lost the series against the computer!!\n${count} - ${5-count}`)
+    } else {
+      console.log(`You won the series against the computer!! Congratulations. ${count} - ${5-count}`)
+      return alert(`You won the series against the computer!! Congratulations.\n${count} - ${5-count}`)
+    }
   }
   
   game()
