@@ -74,5 +74,4 @@ function randomNum() {
       ${count} - ${5-count}`)
     }
   }
-  
   game()
