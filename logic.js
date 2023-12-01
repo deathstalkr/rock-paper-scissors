@@ -1,3 +1,14 @@
+const container = document.querySelectorAll('button');
+let id = '';
+
+container.forEach((button) => {
+  button.addEventListener('click', () => {
+    id = button.id;
+    console.log(id)
+    game();
+  });
+});
+
 function randomNum() {
     // return a random number between 1 and 3 to choose an option for the computer
     return Math.floor(Math.random() * 3);
@@ -9,13 +20,10 @@ function randomNum() {
     switch (i) {
       case 0:
         return "rock";
-        break;
       case 1:
         return "paper";
-        break;
       case 2:
         return "scissors";
-        break;
     }
   }
   
@@ -39,13 +47,28 @@ function randomNum() {
   }
   
   function game() {
-    let playerSelection = '';
     let computerSelection = '';
     let count = 0;
-    alert(`You Vs Computer\n5 match series\n0 - 0`)
+    computerSelection = getComputerChoice();
+
+    switch (id) {
+      case 'rock':
+        playRound('rock', computerSelection)
+        break;
+      case 'paper':
+        playRound('paper', computerSelection)
+        break;
+      case 'scissors':
+        playRound('scissors', computerSelection)
+        break;
+      default:
+        break;
+    }
+
     
     // create a 5 match series
-    for (let i = 0; i < 5; i++) {
+    /* alert(`You Vs Computer\n5 match series\n0 - 0`)
+     for (let i = 0; i < 5; i++) {
   
       playerSelection = prompt(`Please choose any one:\nrock, paper or scissors`, '');
       computerSelection = getComputerChoice();
@@ -60,7 +83,7 @@ function randomNum() {
       } else if (match.includes("Please enter a valid option") || match.includes("Draw!")) {
         i--;
       }
-    }
+    } */
 
     // return the series results 
     if (count <= Math.floor(5 / 2)) {
@@ -74,4 +97,3 @@ function randomNum() {
       ${count} - ${5-count}`)
     }
   }
-  game()
