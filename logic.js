@@ -43,59 +43,26 @@ function game() {
 		case "scissors":
 			playRound("scissors", computerSelection);
 			break;
-		default:
-			break;
 	}
+}
 
-  if (playerCount == 5 || computerCount == 5){
-    if (playerCount > computerCount){
-      alert(`You Won the series against the computer\n${playerCount} - ${computerCount}`);
-      playerCount = 0;
-      computerCount = 0;
-      para.textContent = ``;
-    } if (computerCount > playerCount){
-      alert(`You Lost the series against the computer\n${playerCount} - ${computerCount}`);
-      playerCount = 0;
-      computerCount = 0;
-      para.textContent = ``;
-    }
-  }
-
-	// create a 5 match series
-	//alert(`You Vs Computer\n5 match series\n0 - 0`);
-	/*	for (let i = 0; i < 5; i++) {
-		playerSelection = prompt(
-			`Please choose any one:\nrock, paper or scissors`,
-			""
+if (playerCount == 5 || computerCount == 5) {
+	if (playerCount > computerCount) {
+		alert(
+			`You Won the series against the computer\n${playerCount} - ${computerCount}`
 		);
-		computerSelection = getComputerChoice();
-
-		let match = playRound(playerSelection, computerSelection);
-		alert(match);
-		console.log(match);
-
-		// update player score and do a re-match if draw or invalid input is obtained.
-		if (match.includes("win!")) {
-			count += 1;
-		} else if (
-			match.includes("Please enter a valid option") ||
-			match.includes("Draw!")
-		) {
-			i--;
-		}
-	} */
-
-	// return the series results
-	/* if (count <= Math.floor(5 / 2)) {
-      console.log(`You lost the series against the computer!! 
-      ${count} - ${5-count}`)
-      return alert(`You lost the series against the computer!!\n
-      ${count} - ${5-count}`)
-    } else {
-      console.log(`You won the series against the computer!! Congratulations. ${count} - ${5-count}`)
-      return alert(`You won the series against the computer!! Congratulations.\n
-      ${count} - ${5-count}`)
-    } */
+		playerCount = 0;
+		computerCount = 0;
+		para.textContent = ``;
+	}
+	if (computerCount > playerCount) {
+		alert(
+			`You Lost the series against the computer\n${playerCount} - ${computerCount}`
+		);
+		playerCount = 0;
+		computerCount = 0;
+		para.textContent = ``;
+	}
 }
 
 function playRound(playerSelection, computerSelection) {
@@ -109,18 +76,14 @@ function playRound(playerSelection, computerSelection) {
 		(player == "scissors" && computerSelection == "rock") ||
 		(player == "paper" && computerSelection == "scissors")
 	) {
-    computerCount += 1;
+		computerCount += 1;
 		para.textContent = `You loose! ${computerSelection} beats ${player}\n ${playerCount} - ${computerCount}`;
-		
 	} else if (
 		(player == "paper" && computerSelection == "rock") ||
 		(player == "rock" && computerSelection == "scissors") ||
 		(player == "scissors" && computerSelection == "paper")
 	) {
-    playerCount += 1;
+		playerCount += 1;
 		para.textContent = `You win! ${player} beats ${computerSelection}\n ${playerCount} - ${computerCount}`;
-		
-	} else {
-		para.textContent = `Please enter a valid option. Taking re-match\n ${playerCount} - ${computerCount}`;
 	}
 }
