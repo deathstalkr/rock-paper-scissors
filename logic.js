@@ -44,46 +44,46 @@ function game() {
 			playRound("scissors", computerSelection);
 			break;
 	}
-}
-
-if (playerCount == 5 || computerCount == 5) {
-	if (playerCount > computerCount) {
-		alert(
-			`You Won the series against the computer\n${playerCount} - ${computerCount}`
-		);
-		playerCount = 0;
-		computerCount = 0;
-		para.textContent = ``;
-	}
-	if (computerCount > playerCount) {
-		alert(
-			`You Lost the series against the computer\n${playerCount} - ${computerCount}`
-		);
-		playerCount = 0;
-		computerCount = 0;
-		para.textContent = ``;
+	// game of 5 matches
+	if (playerCount == 5 || computerCount == 5) {
+		if (playerCount > computerCount) {
+			alert(
+				`You Won the series against the computer\n${playerCount} - ${computerCount}`
+			);
+			playerCount = 0;
+			computerCount = 0;
+			para.textContent = ``;
+		}
+		if (computerCount > playerCount) {
+			alert(
+				`You Lost the series against the computer\n${playerCount} - ${computerCount}`
+			);
+			playerCount = 0;
+			computerCount = 0;
+			para.textContent = ``;
+		}
 	}
 }
 
 function playRound(playerSelection, computerSelection) {
-	const player = playerSelection.toLowerCase();
-
 	// return results based on the choices of both player and computer
-	if (player === computerSelection) {
+	if (playerSelection === computerSelection) {
 		para.textContent = `Draw! Taking re-match\n ${playerCount} - ${computerCount}`;
 	} else if (
-		(player == "rock" && computerSelection == "paper") ||
-		(player == "scissors" && computerSelection == "rock") ||
-		(player == "paper" && computerSelection == "scissors")
+		(playerSelection == "rock" && computerSelection == "paper") ||
+		(playerSelection == "scissors" &&
+			computerSelection == "rock") ||
+		(playerSelection == "paper" && computerSelection == "scissors")
 	) {
 		computerCount += 1;
-		para.textContent = `You loose! ${computerSelection} beats ${player}\n ${playerCount} - ${computerCount}`;
+		para.textContent = `You loose! ${computerSelection} beats ${playerSelection}\n ${playerCount} - ${computerCount}`;
 	} else if (
-		(player == "paper" && computerSelection == "rock") ||
-		(player == "rock" && computerSelection == "scissors") ||
-		(player == "scissors" && computerSelection == "paper")
+		(playerSelection == "paper" && computerSelection == "rock") ||
+		(playerSelection == "rock" &&
+			computerSelection == "scissors") ||
+		(playerSelection == "scissors" && computerSelection == "paper")
 	) {
 		playerCount += 1;
-		para.textContent = `You win! ${player} beats ${computerSelection}\n ${playerCount} - ${computerCount}`;
+		para.textContent = `You win! ${playerSelection} beats ${computerSelection}\n ${playerCount} - ${computerCount}`;
 	}
 }
